@@ -1,0 +1,44 @@
+.title {
+  font-size: .95rem;
+  font-weight: bold;
+}
+
+.details {
+  font-size: .8rem;
+}
+
+.cta {
+  font-weight: bold;
+  font-size: .7rem;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.chip {
+  width: auto;
+  font-size: .575rem;
+}
+
+ion-icon[name="document-text-outline"],
+ion-icon[name="bag-add-outline"] {
+  color: #fff;
+}
+
+.card-content {
+  padding-left: 16px;
+}
+
+.text-white {
+  color: #fff;
+}
+
+.full {
+  width: 100%
+}
+
+/* Shadow DOM */
+.rounded::part(image) {
+  border-radius: 9px;
+}

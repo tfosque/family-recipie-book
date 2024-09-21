@@ -6,8 +6,9 @@ import { Tab1Page } from './tab1.page';
 import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
 
 import { Tab1PageRoutingModule } from './tab1-routing.module';
+import { RecipeItemComponent } from '../components/recipe-item/recipe-item.component';
 
-@NgModule({
+@NgModule( {
   imports: [
     IonicModule,
     CommonModule,
@@ -15,6 +16,6 @@ import { Tab1PageRoutingModule } from './tab1-routing.module';
     ExploreContainerComponentModule,
     Tab1PageRoutingModule
   ],
-  declarations: [Tab1Page]
-})
-export class Tab1PageModule {}
+  declarations: [Tab1Page, RecipeItemComponent]
+} )
+export class Tab1PageModule { }

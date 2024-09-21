@@ -1,17 +1,51 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar color="warning">
     <ion-title>
-      Tab 1
+      Recipesx
+      <ion-chip color="dark"
+        [ngStyle]="{'width': '68px', 'padding-left': '11%'}">{{(recipes$ | async)?.length}}</ion-chip>
+      <!-- <div><small>A | B| C | D | E</small></div> -->
+      <!-- <ion-searchbar [debounce]="1000" placeholder="Search"></ion-searchbar> -->
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <section *ngIf="!isLoaded">
+    <ion-skeleton-text [animated]="true" style="width: 80px"></ion-skeleton-text>
+    <ion-skeleton-text [animated]="true" style="width: 50px"></ion-skeleton-text>
+    <ion-skeleton-text [animated]="true" style="width: 40px"></ion-skeleton-text>
+    <ion-skeleton-text [animated]="true" style="width: 93px"></ion-skeleton-text>
+  </section>
+  <ng-container *ngFor="let letter of letters">
+    <ion-item-divider color="light" sticky="true">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-label>{{letter}}</ion-label>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item-divider>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+    <ng-container *ngFor="let item of (recipes$ | async); index as i">
+      <ion-item-group *ngIf="(item.title[0]).startsWith(letter); else skip">
+        <app-recipe-item [recipe]="item" [letter]="letter" [index]="i"></app-recipe-item>
+      </ion-item-group>
+    </ng-container>
+    <!-- Template -->
+    <ng-template #skip></ng-template>
+  </ng-container>
+  <!-- NO RECIPES EXIST -->
+  <ng-template #empty>
+    <div>No Results</div>
+  </ng-template>
+  <!--  <ion-toast trigger="emptyRecipes" message="This toast will disappear after 5 seconds" [duration]="5000"></ion-toast> -->
 </ion-content>
+
+<!-- 
+  <ion-fab horizontal="end">
+    <ion-fab-button color="warning">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab> -->

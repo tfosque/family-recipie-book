@@ -1,0 +1,70 @@
+<ion-item [ngStyle]="{overflow: 'auto'}" [lines]="showRowLine">
+  <ion-card class="full">
+    <img [alt]="recipe.id" [src]="imgUrl" width="100%" />
+
+    <ion-card-header>
+      <ion-card-subtitle>
+        <ion-chip class="chip" color="warning" *ngFor="let food of foodGroup">{{food}}</ion-chip>
+      </ion-card-subtitle>
+      <ion-card-title>{{recipe.title}}</ion-card-title>
+
+    </ion-card-header>
+
+    <ion-card-content class="card-content">
+
+      <ion-button fill="outline" color="light" class="cta" (click)="onToggleFavIcon($event)">
+        <ion-icon [name]="favIcon ? 'heart' : 'heart-outline'" color="warning"></ion-icon>
+      </ion-button>
+
+      <ion-button color="warning" class="cta" (click)="onClick()">
+        <ion-icon slot="start" name="document-text-outline"></ion-icon>
+        <ion-text class="text-white uppercase">Details</ion-text>
+      </ion-button>
+
+      <ion-button color="warning" class="cta">
+        <ion-icon slot="start" name="bag-add-outline"></ion-icon>
+        <ion-text class="text-white uppercase">Add To Meal</ion-text>
+      </ion-button>
+
+    </ion-card-content>
+  </ion-card>
+</ion-item>
+
+<!--   <ion-item lines="none">
+    <ion-label>Angel Hair Pasta</ion-label>
+  </ion-item> -->
+
+<!--   <ion-grid>
+    <ion-row>
+      <ion-col size="3">
+        <ion-img class="rounded" [src]="recipe.imgSet.thumb" alt={{recipe.id}}></ion-img>
+      </ion-col>
+  
+      <ion-col size="9">
+        <ion-label routerLink="/recipe-details" class="title">{{recipe.title}}</ion-label>
+        <div class="details">
+          <ion-row>
+            <ion-col size="4">{{recipe.average_price}}</ion-col>
+            <ion-col size="8">{{recipe.uom}}</ion-col>
+            <ion-col size="12">
+              <ion-row>
+                <ion-col size="4">
+                  <ion-button fill="outline" color="light" class="cta" (click)="onToggleFavIcon($event)">
+                    <ion-icon [name]="favIcon ? 'heart' : 'heart-outline'" color="warning"></ion-icon>
+                  </ion-button>
+                </ion-col>
+                <ion-col size="8">
+                  <ion-button color="warning" class="cta" size="small">
+                    <ion-icon slot="start" name="bag-add-outline"></ion-icon>
+                    <ion-text class="text-white">ADD TO MEAL</ion-text>
+                  </ion-button>
+                </ion-col>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+  
+        </div>
+      </ion-col>
+  
+    </ion-row>
+  </ion-grid> -->
