@@ -3,19 +3,22 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Tab1Page } from './tab1.page';
-import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
 
 import { Tab1PageRoutingModule } from './tab1-routing.module';
 import { RecipeItemComponent } from '../components/recipe-item/recipe-item.component';
+import { SkeletonRecipeCardComponent } from '../components/skeleton-recipe-card/skeleton-recipe-card.component';
 
 @NgModule( {
   imports: [
     IonicModule,
     CommonModule,
     FormsModule,
-    ExploreContainerComponentModule,
     Tab1PageRoutingModule
   ],
-  declarations: [Tab1Page, RecipeItemComponent]
+  declarations: [
+    Tab1Page, 
+    RecipeItemComponent,
+    SkeletonRecipeCardComponent
+  ]
 } )
 export class Tab1PageModule { }

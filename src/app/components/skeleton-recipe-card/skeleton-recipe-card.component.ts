@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-skeleton-recipe-card',
@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./skeleton-recipe-card.component.scss'],
 })
 export class SkeletonRecipeCardComponent  implements OnInit {
+  @Input() isLoading = false;
 
   constructor() { }
 

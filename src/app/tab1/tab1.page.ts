@@ -13,7 +13,7 @@ export class Tab1Page {
   letters: any[] = [];
   recipes$ = new BehaviorSubject<any>( [] );
   emptyRecipes = false;
-  isLoaded = false;
+  isLoading = true;
 
   constructor(
     private readonly recipeSvc: RecipeService
@@ -31,7 +31,7 @@ export class Tab1Page {
       if ( r?.length ) {
         this.recipes$.next( r );
         this.isLastRowItem();
-        this.isLoaded = true;
+        this.isLoading = false; // TODO move to service and catch error
 
         // build list
         const results = this.recipes$.value.map( ( rp: any ) => {
@@ -49,35 +49,21 @@ export class Tab1Page {
   }
 
   isLastRowItem() {
-    // map over recipes and identify the last item of each leter
-    // console.log();
-    console.group( 'isLastRowItem:' );
-
-    const compareWithNext = ( arr: any = this.recipes$.value ) => {
+    // map over recipes and identify the last item of each leter 
+  
+    const arr = this.recipes$.value;    
       for ( let i = 0; i < arr.length - 1; i++ ) {
         const currentItem = arr[i].title[0];
         const nextItem = arr[i + 1].title[0];
 
         if ( currentItem === nextItem ) {
-          // console.log( { currentItem, nextItem } );
           // console.log( `Match found: ${currentItem} matches ${nextItem}` );
           arr[i].showLines = true
         } else {
-          // add lines = 'none' here
+          // lines = 'none' here
           arr[i].showLines = false
           // console.log( `No match: ${currentItem} does not match ${nextItem}` );
-        }
-      }
+        }      
     }
-    compareWithNext();
-    console.log( 'list:', this.recipes$.value )
-    console.groupEnd();
   }
-
-  /*   onIonInfinite( ev: any ) {
-      // this.generateItems();
-      setTimeout( () => {
-        ( ev as InfiniteScrollCustomEvent ).target.complete();
-      }, 500 );
-    } */
 }

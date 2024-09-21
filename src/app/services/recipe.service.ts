@@ -10,12 +10,11 @@ import { ReceipesData } from './recipesData';
   providedIn: 'root'
 } )
 export class RecipeService {
-  // api: string = environment.apiBase;
-  api: string = environment.apiBaseRecipes;
+  // api: string = environment.apiBase; // Local
+  api: string = environment.apiBaseRecipes; // Mockaroo
   private recipes = new BehaviorSubject<any>( [] );
   public recipes$ = this.recipes.asObservable();
   //
-
   private selectedRecipe = new BehaviorSubject<any>( {} );
   public selectedRecipe$ = this.selectedRecipe.asObservable();
   constructor() { }
@@ -30,12 +29,15 @@ export class RecipeService {
       headers: { 'X-Custom-Header': 'Value' },
       // params: { id: '12345' }
     };
-    const response = await CapacitorHttp.get( options );
-
-    const sortedList = this.alphabetizeList( response.data );
-    console.log( { response, sortedList } );
-
-    this.recipes.next( sortedList );
+    try {
+      const response = await CapacitorHttp.get( options );
+      const sortedList = this.alphabetizeList( response.data ); 
+      console.log( { response, sortedList } );    
+      // 
+      this.recipes.next( sortedList );
+    } catch (error) {
+      console.log({error})
+    }
   }
 
   setSelectedRecipe( item: any ) {
