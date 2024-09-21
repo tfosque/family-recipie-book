@@ -1,0 +1,7 @@
+{
+  "name": "family-recipe-book",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
