@@ -22,7 +22,8 @@ export class Tab1Page {
   }
 
   ngOnInit(): void {
-    this.recipeSvc.getRecipes();
+    // this.recipeSvc.getRecipes();
+    this.recipeSvc.getRecipesMongoDB();
     //
     this.recipeSvc.recipes$.subscribe( ( r: any ) => {
 

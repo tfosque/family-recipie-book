@@ -12,6 +12,7 @@ import { ReceipesData } from './recipesData';
 export class RecipeService {
   // api: string = environment.apiBase; // Local
   api: string = environment.apiBaseRecipes; // Mockaroo
+  apiFood = 'http://localhost:3000/api/food'
   private recipes = new BehaviorSubject<any>( [] );
   public recipes$ = this.recipes.asObservable();
   //
@@ -21,6 +22,23 @@ export class RecipeService {
 
   getLocalRecipes() {
     this.recipes.next( ReceipesData );
+  }
+
+  async getRecipesMongoDB() {
+    const options = {
+      url: this.apiFood,
+      headers: { 'X-Custom-Header': 'Value' },
+      // params: { id: '12345' }
+    };
+    try {
+      const response = await CapacitorHttp.get( options );
+      const sortedList = this.alphabetizeList( response.data ); 
+      console.log('MONGO:', { response, sortedList } );    
+      // 
+      this.recipes.next( sortedList );
+    } catch (error) {
+      console.log({error})
+    }
   }
 
   async getRecipes() {
