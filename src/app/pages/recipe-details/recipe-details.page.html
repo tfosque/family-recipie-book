@@ -7,39 +7,41 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true"> 
-  <ion-list-header>
-    <ion-label><h1 [ngStyle]="{'font-weight': 'bold'}">{{title}}</h1></ion-label>
-  </ion-list-header>
-<ion-grid>
-  <ion-row>
-    <ion-col>
-      <ion-thumbnail>
-        <img [src]="(selectedRecipe | async)?.imgSet.thumb" alt="Image description" alt="my-image" [src]="" />
-      </ion-thumbnail>
-    
-    </ion-col>
-  </ion-row>
-</ion-grid>
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <img
+      alt="title-image"
+      width="360"
+      height="280"
+      [src]="(selectedRecipe | async)?.imgSet.large"
+      alt="Image description"
+      alt="my-image"
+    />
+    <ion-card-header>
+      <div>{{desc | slice:0:100}}</div>
+      <ion-card-subtitle>{{average_price}}</ion-card-subtitle>
+      <ion-card-title>{{title}}</ion-card-title>
+    </ion-card-header>
+    <!--  <ion-card-content>  
+    </ion-card-content> -->
+  </ion-card>
 
-  <ion-list [inset]="true">   
-    <ion-list-header>
-      <ion-label>Ingredients</ion-label>
-    </ion-list-header>
-
-   <ng-container *ngFor="let rec of (selectedRecipe | async)?.ingredients; let i = index">
-    <ion-item>    
-       <ion-grid>
-        <ion-row>
-          <ion-col size="12" class="label">{{ labels[i] }}</ion-col>
-          <ion-col size="12"><ion-text color="medium">Price: </ion-text>{{ rec.item.price |
-           currency}}</ion-col>
-          <ion-col size="12"><ion-text color="medium">Calories: </ion-text>{{ rec.item.calories}}</ion-col>
-        </ion-row>
-       </ion-grid>          
+  <ion-list [inset]="true">
+    <ion-item
+      *ngFor="let rec of (selectedRecipe | async)?.ingredients[0].item.labels; let i = index"
+    >
+      <ion-label>{{ labels[i] }}</ion-label>
     </ion-item>
-   </ng-container>
-
-
   </ion-list>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-title>
+      <!--  <ion-button expand="block" color="warning" size="large">
+        <ion-icon name="cart"></ion-icon>
+        Add to Cart
+      </ion-button> -->
+    </ion-title>
+  </ion-toolbar>
+</ion-footer>

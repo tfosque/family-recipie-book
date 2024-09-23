@@ -38,6 +38,7 @@ export class RecipeDetailsPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    // TODO on page refresh fetch item again
     // this.recipeSvc.getRecipesMongoDB();          
     this.recipeSvc.selectedRecipe$.subscribe( ( item: FoodItem ) => {   
       //

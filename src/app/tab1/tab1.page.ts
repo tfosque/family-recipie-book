@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { RecipeService } from '../services/recipe.service';
 import { BehaviorSubject } from 'rxjs';
-// import { InfiniteScrollCustomEvent } from '@ionic/angular';
 import * as _ from 'lodash';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component( {
   selector: 'app-tab1',
@@ -16,10 +16,10 @@ export class Tab1Page {
   isLoading = true;
 
   constructor(
-    private readonly recipeSvc: RecipeService
-  ) {
-
-  }
+    private readonly recipeSvc: RecipeService,
+    private readonly router: Router,
+    private readonly activeRoute: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
     // this.recipeSvc.getRecipes();
@@ -47,7 +47,22 @@ export class Tab1Page {
       // if empty alert user no recipes exist
       this.emptyRecipes = true;
     } )
+    //
+    this.activeRoute.fragment.subscribe(fragment => {
+      if (fragment) {
+        const element = document.querySelector('#' + fragment);
+        if (element) element.scrollIntoView();
+      }
+    });
+  
   }
+
+ /*  clickAnchor(letter: string){
+    console.log({letter});
+    console.log('route:', this.router.url);
+    //    
+    this.router.navigate(['/tabs/tab1'], { fragment: letter });
+  } */
 
   isLastRowItem() {
     // map over recipes and identify the last item of each leter 

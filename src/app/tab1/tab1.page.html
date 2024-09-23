@@ -1,34 +1,45 @@
 <ion-header [translucent]="true">
   <ion-toolbar color="warning">
-    <ion-title>
-      Recipes
-      <ion-chip color="dark"
-        [ngStyle]="{'width': '68px', 'padding-left': '11%'}">{{(recipes$ | async)?.length}}</ion-chip>
-    </ion-title>
+    <ion-title> Recipes </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <app-skeleton-recipe-card [isLoading]="isLoading"></app-skeleton-recipe-card>  
+  <app-skeleton-recipe-card [isLoading]="isLoading"></app-skeleton-recipe-card>
+  <!--  -->
   <ng-container *ngFor="let letter of letters">
+    <div class="alpha-list-container">
+      <ul class="alpha-list">
+        <li *ngFor="let l of letters" [routerLink]="[]" [fragment]="l">
+          {{l}}
+        </li>
+      </ul>
+    </div>
+    <!--  -->
     <ion-item-divider color="light" sticky="true">
       <ion-grid>
         <ion-row>
           <ion-col>
-            <ion-label>{{letter}}</ion-label>
+            <ion-label [id]="letter">{{letter}}</ion-label>
           </ion-col>
         </ion-row>
       </ion-grid>
     </ion-item-divider>
-
+    <!--  -->
     <ng-container *ngFor="let item of (recipes$ | async); index as i">
       <ion-item-group *ngIf="(item.title[0]).startsWith(letter); else skip">
-        <app-recipe-item [recipe]="item" [letter]="letter" [index]="i"></app-recipe-item>
+        <app-recipe-item
+          [recipe]="item"
+          [letter]="letter"
+          [index]="i"
+        ></app-recipe-item>
       </ion-item-group>
     </ng-container>
+
     <!-- Template -->
     <ng-template #skip></ng-template>
   </ng-container>
+
   <!-- NO RECIPES EXIST -->
   <ng-template #empty>
     <div>No Results</div>
