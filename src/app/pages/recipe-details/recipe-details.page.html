@@ -54,7 +54,11 @@
         <ion-list>
           <ion-item>
             <ion-avatar slot="start">
-              <ion-img src="https://i.pravatar.cc/300?u=b"></ion-img>
+              <ion-img
+                #img
+                [src]="imgSet.thumb"
+                (ionError)="handleImgError($event)"
+              ></ion-img>
             </ion-avatar>
             <ion-label>
               <h2>Step 1</h2>
@@ -63,7 +67,10 @@
           </ion-item>
           <ion-item>
             <ion-avatar slot="start">
-              <ion-img src="https://i.pravatar.cc/300?u=a"></ion-img>
+              <ion-img
+                [src]="imgSet.thumb"
+                (ionError)="handleImgError($event)"
+              ></ion-img>
             </ion-avatar>
             <ion-label>
               <h2>Step 2</h2>
@@ -72,7 +79,10 @@
           </ion-item>
           <ion-item>
             <ion-avatar slot="start">
-              <ion-img src="https://i.pravatar.cc/300?u=d"></ion-img>
+              <ion-img
+                [src]="imgSet.thumb"
+                (ionError)="handleImgError($event)"
+              ></ion-img>
             </ion-avatar>
             <ion-label>
               <h2>Step 3</h2>
@@ -81,7 +91,10 @@
           </ion-item>
           <ion-item>
             <ion-avatar slot="start">
-              <ion-img src="https://i.pravatar.cc/300?u=e"></ion-img>
+              <ion-img
+                [src]="imgSet.thumb"
+                (ionError)="handleImgError($event)"
+              ></ion-img>
             </ion-avatar>
             <ion-label>
               <h2>Step 4</h2>

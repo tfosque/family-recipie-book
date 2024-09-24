@@ -2,12 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { RecipeService } from 'src/app/services/recipe.service';
 import * as _ from 'lodash';
+import { FallbackImgDirective } from 'src/app/directives/fallback-img.directive';
 
 interface FoodItem {
   title: string;
   desc: string;
   isRecipeFavorite: boolean;
-  imgSet: any[];
+  imgSet: ImgSet;
   average_price: string;
   uom: string;
   imgUrl: string;
@@ -15,10 +16,17 @@ interface FoodItem {
   labels: string[];
 }
 
+interface ImgSet {
+  default: string;
+  thumb: string;
+  large: string;
+}
+
 @Component( {
   selector: 'app-recipe-details',
   templateUrl: './recipe-details.page.html',
   styleUrls: ['./recipe-details.page.scss'],
+  providers: [FallbackImgDirective],
 } )
 export class RecipeDetailsPage implements OnInit {
   selectedRecipe = new BehaviorSubject<any>( {} );
@@ -26,7 +34,7 @@ export class RecipeDetailsPage implements OnInit {
   title = '';
   desc = '';
   isRecipeFavorite = false;
-  imgSet: any[] = [];
+  imgSet: ImgSet = {default: '', thumb: '', large: ''};
   average_price = '';
   uom = '';
   imgUrl = '';
@@ -59,12 +67,17 @@ export class RecipeDetailsPage implements OnInit {
         this.imgUrl = item.imgUrl;
         this.ingredients = item.ingredients;
         this.labels = item.ingredients[0].item.labels;
-        console.log('ingredients:::', this.ingredients);
-        console.log('labels:::', this.labels);
+        // console.log('ingredients:::', this.ingredients);
+        // console.log('labels:::', this.labels);
         return;
       }// TODO handle UI
       console.log('no data on page refresh');
     } )
+  }
+
+  handleImgError(event: any){
+    console.log('Image failed to load:', event);
+    event.target.src = '/assets/images/fallback.png'
   }
 
 }
