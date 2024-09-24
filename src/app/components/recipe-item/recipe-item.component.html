@@ -1,19 +1,27 @@
-<ion-item [ngStyle]="{overflow: 'auto'}" [lines]="showRowLine">
+<ion-item [ngStyle]="{ overflow: 'auto' }" [lines]="showRowLine">
   <ion-card class="full">
     <img [alt]="recipe.id" [src]="imgUrl" width="100%" />
 
     <ion-card-header>
       <ion-card-subtitle>
-        <ion-chip class="chip" color="warning" *ngFor="let food of foodGroup">{{food}}</ion-chip>
+        <ion-chip class="chip" color="warning" *ngFor="let food of foodGroup">{{
+          food
+        }}</ion-chip>
       </ion-card-subtitle>
-      <ion-card-title>{{recipe.title}}</ion-card-title>
-
+      <ion-card-title>{{ recipe.title }}</ion-card-title>
     </ion-card-header>
 
     <ion-card-content class="card-content">
-
-      <ion-button fill="outline" color="light" class="cta" (click)="onToggleFavIcon($event)">
-        <ion-icon [name]="favIcon ? 'heart' : 'heart-outline'" color="warning"></ion-icon>
+      <ion-button
+        fill="outline"
+        color="light"
+        class="cta"
+        (click)="onToggleFavIcon($event)"
+      >
+        <ion-icon
+          [name]="favIcon ? 'heart' : 'heart-outline'"
+          color="warning"
+        ></ion-icon>
       </ion-button>
 
       <ion-button color="warning" class="cta" (click)="onClick()">
@@ -21,11 +29,10 @@
         <ion-text class="text-white uppercase">Details</ion-text>
       </ion-button>
 
-      <ion-button color="warning" class="cta">
+      <ion-button color="warning" class="cta" routerLink="#A">
         <ion-icon slot="start" name="bag-add-outline"></ion-icon>
         <ion-text class="text-white uppercase">Add To Meal</ion-text>
       </ion-button>
-
     </ion-card-content>
   </ion-card>
 </ion-item>

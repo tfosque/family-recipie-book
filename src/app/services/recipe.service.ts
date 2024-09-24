@@ -5,23 +5,45 @@ import { environment } from 'src/environments/environment';
 import * as _ from 'lodash';
 import { ReceipesData } from './recipesData';
 
-
-@Injectable( {
-  providedIn: 'root'
-} )
+@Injectable({
+  providedIn: 'root',
+})
 export class RecipeService {
   // api: string = environment.apiBase; // Local
   api: string = environment.apiBaseRecipes; // Mockaroo
-  apiFood = 'http://localhost:3000/api/food'
-  private recipes = new BehaviorSubject<any>( [] );
+  apiFood = 'http://localhost:3000/api/food';
+  apiFoodProxy =
+    'https://my.api.mockaroo.com/meal_planner_recipes_labels.json?key=6c4d45e0';
+  private recipes = new BehaviorSubject<any>([]);
   public recipes$ = this.recipes.asObservable();
   //
-  private selectedRecipe = new BehaviorSubject<any>( {} );
+  private selectedRecipe = new BehaviorSubject<any>({});
   public selectedRecipe$ = this.selectedRecipe.asObservable();
-  constructor() { }
+  constructor() {}
 
   getLocalRecipes() {
-    this.recipes.next( ReceipesData );
+    this.recipes.next(ReceipesData);
+  }
+
+  async getLocalRecipesProxy(isBrowser: boolean) {
+    if (!isBrowser) {
+      this.getRecipesMongoDB();
+      return;
+    }
+    // run proxy or call mockaroo
+    const options = {
+      url: this.apiFoodProxy,
+      headers: { 'X-Custom-Header': 'Value' },
+    };
+    try {
+      const response = await CapacitorHttp.get(options);
+      const sortedList = this.alphabetizeList(response.data);
+      console.log('MONGO:', { response, sortedList });
+      //
+      this.recipes.next(sortedList);
+    } catch (error) {
+      console.log({ error });
+    }
   }
 
   async getRecipesMongoDB() {
@@ -31,13 +53,13 @@ export class RecipeService {
       // params: { id: '12345' }
     };
     try {
-      const response = await CapacitorHttp.get( options );
-      const sortedList = this.alphabetizeList( response.data ); 
-      console.log('MONGO:', { response, sortedList } );    
-      // 
-      this.recipes.next( sortedList );
+      const response = await CapacitorHttp.get(options);
+      const sortedList = this.alphabetizeList(response.data);
+      console.log('MONGO:', { response, sortedList });
+      //
+      this.recipes.next(sortedList);
     } catch (error) {
-      console.log({error})
+      console.log({ error });
     }
   }
 
@@ -48,24 +70,23 @@ export class RecipeService {
       // params: { id: '12345' }
     };
     try {
-      const response = await CapacitorHttp.get( options );
-      const sortedList = this.alphabetizeList( response.data ); 
-      console.log( { response, sortedList } );    
-      // 
-      this.recipes.next( sortedList );
+      const response = await CapacitorHttp.get(options);
+      const sortedList = this.alphabetizeList(response.data);
+      console.log({ response, sortedList });
+      //
+      this.recipes.next(sortedList);
     } catch (error) {
-      console.log({error})
+      console.log({ error });
     }
   }
 
-  setSelectedRecipe( item: any ) {
-    this.selectedRecipe.next( item );
+  setSelectedRecipe(item: any) {
+    this.selectedRecipe.next(item);
   }
 
-  alphabetizeList( list: [] ) {
-    const sorted = _.sortBy( list, 'title' );
+  alphabetizeList(list: []) {
+    const sorted = _.sortBy(list, 'title');
     // console.log( { sorted } );
-    return sorted
+    return sorted;
   }
-
 }
