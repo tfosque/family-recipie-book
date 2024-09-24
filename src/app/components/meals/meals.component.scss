@@ -1,0 +1,29 @@
+.card-container {
+    text-align: center;
+
+    ion-col[card] {
+        border: solid thin rgb(212, 211, 211);
+        margin: 6px;
+        border-radius: 14px;
+        box-shadow: 1px 2px 2px 0.025em #00000033;
+
+        .subtitle {
+            font-size: .66rem;
+        }
+
+        .calories {
+            font-weight: bold;
+            font-size: .66rem;
+        }
+    }
+}
+
+// shadow dom selector
+ion-img::part(image) {
+    margin: auto;
+    border-radius: 38px !important;
+    width: 90px;
+    height: 90px;
+    margin-bottom: 8px;
+    margin-top: 8px;
+}

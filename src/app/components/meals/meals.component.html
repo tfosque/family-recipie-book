@@ -1,0 +1,31 @@
+<ion-content>
+  <ion-grid [ngStyle]="{ margin: 'auto', width: '110vw' }">
+    <ion-row class="card-container">
+      <ion-col size="12">
+        <ion-row class="ion-no-padding">
+          <ion-col>Meals</ion-col>
+          <ion-col>Sides</ion-col>
+          <ion-col>Snacks</ion-col>
+        </ion-row>
+      </ion-col>
+      <ion-col size="5" card *ngFor="let i of [1, 2, 3, 4, 5, 6]">
+        <ion-col size="12">
+          <ion-button color="clear" size="small" [ngStyle]="{ float: 'right' }">
+            <ion-icon
+              color="warning"
+              slot="end"
+              name="heart-outline"
+            ></ion-icon>
+          </ion-button>
+          <ion-img
+            [ngStyle]="{ clear: 'both' }"
+            src="https://hot-thai-kitchen.com/wp-content/uploads/2017/08/Yum-Mama-sm-180x180.jpg"
+            alt=""
+          />
+          <div class="subtitle">Spicy Noodles</div>
+          <div class="calories">N1,500</div>
+        </ion-col>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

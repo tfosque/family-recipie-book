@@ -9,16 +9,21 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { MealsPageModule } from './pages/meals/meals.module';
 
-
-@NgModule( {
+@NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
-    FormsModule
+  imports: [
+    BrowserModule,
+    IonicModule.forRoot(),
+    AppRoutingModule,
+    FormsModule,
+    MealsPageModule,
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-  provideHttpClient()
+  providers: [
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    provideHttpClient(),
   ],
   bootstrap: [AppComponent],
-} )
-export class AppModule { }
+})
+export class AppModule {}

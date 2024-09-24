@@ -1,14 +1,29 @@
-<ion-header>
+<!-- <ion-header>
   <ion-toolbar>
     <ion-title>Back Button</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+<ion-header>
+  <ion-toolbar color="warning">
+    <ion-title size="medium">Meals</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Meals</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <app-meals></app-meals>
 
+  <!--  <ion-button id="open-toast" expand="block">Open</ion-button>  -->
+  <ion-toast
+    trigger="open-toast"
+    message="Testing toast message"
+    [duration]="5000"
+  ></ion-toast>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-button id="open-toast" color="warning" expand="block"
+      >Eat it!</ion-button
+    >
+  </ion-toolbar>
+</ion-footer>
