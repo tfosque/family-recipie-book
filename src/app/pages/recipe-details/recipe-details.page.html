@@ -33,15 +33,83 @@
       <ion-label>{{ labels[i] }}</ion-label>
     </ion-item>
   </ion-list>
+
+  <!--  -->
+  <ion-modal
+    #modal
+    trigger="open-modal"
+    [presentingElement]="presentingElement"
+  >
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Instructions</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="modal.dismiss()">Close</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <!-- TODO Component -->
+        <ion-list>
+          <ion-item>
+            <ion-avatar slot="start">
+              <ion-img src="https://i.pravatar.cc/300?u=b"></ion-img>
+            </ion-avatar>
+            <ion-label>
+              <h2>Step 1</h2>
+              <p>Season Food</p>
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-avatar slot="start">
+              <ion-img src="https://i.pravatar.cc/300?u=a"></ion-img>
+            </ion-avatar>
+            <ion-label>
+              <h2>Step 2</h2>
+              <p>Rub thoroughly</p>
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-avatar slot="start">
+              <ion-img src="https://i.pravatar.cc/300?u=d"></ion-img>
+            </ion-avatar>
+            <ion-label>
+              <h2>Step 3</h2>
+              <p>Place on oven rack</p>
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-avatar slot="start">
+              <ion-img src="https://i.pravatar.cc/300?u=e"></ion-img>
+            </ion-avatar>
+            <ion-label>
+              <h2>Step 4</h2>
+              <p>Cook on 355 degrees for 1 hour</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
 </ion-content>
 
 <ion-footer>
   <ion-toolbar>
     <ion-title>
-      <!--  <ion-button expand="block" color="warning" size="large">
-        <ion-icon name="cart"></ion-icon>
-        Add to Cart
-      </ion-button> -->
+      <ion-button
+        [ngStyle]="{'padding-top': '12px'}"
+        size="small"
+        id="open-modal"
+        color="dark"
+      >
+        <ion-icon
+          slot="icon-only"
+          size="large"
+          name="information-circle-outline"
+          color="light"
+        ></ion-icon>
+      </ion-button>
     </ion-title>
   </ion-toolbar>
 </ion-footer>

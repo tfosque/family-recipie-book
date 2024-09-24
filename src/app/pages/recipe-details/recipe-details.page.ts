@@ -32,12 +32,15 @@ export class RecipeDetailsPage implements OnInit {
   imgUrl = '';
   ingredients: any[] = [];
   labels: string[]= [];
+  //
+  presentingElement: any = null;
 
   constructor(
     private readonly recipeSvc: RecipeService
   ) { }
 
   ngOnInit() {
+    this.presentingElement = document.querySelector('.ion-page');
     // TODO on page refresh fetch item again
     // this.recipeSvc.getRecipesMongoDB();          
     this.recipeSvc.selectedRecipe$.subscribe( ( item: FoodItem ) => {   
