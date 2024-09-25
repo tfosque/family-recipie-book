@@ -65,13 +65,6 @@ export class Tab1Page {
     });
   }
 
-  /*  clickAnchor(letter: string){
-    console.log({letter});
-    console.log('route:', this.router.url);
-    //    
-    this.router.navigate(['/tabs/tab1'], { fragment: letter });
-  } */
-
   isLastRowItem() {
     // map over recipes and identify the last item of each leter
 

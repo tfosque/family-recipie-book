@@ -107,9 +107,13 @@ export class RecipeService {
     }
   }
   // Edamam
-  async getRecipesEdamam() {
+  async getRecipesEdamam(filter: string = '') {
+    console.log({ filter });
+    //
+    const urlWithFilter = `http://localhost:3000/api/recipes_eda?filter=${filter}`;
+    console.log({ urlWithFilter });
     const options = {
-      url: this.api_Recipes_Edamam,
+      url: filter !== '' ? urlWithFilter : this.api_Recipes_Edamam,
       headers: { 'X-Custom-Header': 'Value' },
       // params: { id: '12345' }
     };

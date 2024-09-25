@@ -23,6 +23,7 @@ export class Tab3Page {
   }
 
   onSearchChange(event: any) {
+    this.recipeSvc.getRecipesEdamam(this.searchStr);
     console.log(this.searchStr);
   }
 }

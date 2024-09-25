@@ -9,12 +9,11 @@
     <ion-toolbar>
       <ion-title size="large">Recipes</ion-title>
       <ion-searchbar
+        name="searchStr2"
         [debounce]="250"
-        #ngModel
-        name="searchStr"
-        [(ngModel)]="searchStr"
         show-clear-button="always"
-        (ionChange)="onSearchChange($event)"
+        [(ngModel)]="searchStr"
+        (ngModelChange)="onSearchChange($event)"
       ></ion-searchbar>
     </ion-toolbar>
   </ion-header>
