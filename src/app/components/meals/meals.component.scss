@@ -18,6 +18,14 @@
     }
 }
 
+.menu-item-selected {
+    border-bottom: solid thick orange;
+}
+
+.menu-item {
+    border-bottom: none;
+}
+
 // shadow dom selector
 ion-img::part(image) {
     margin: auto;

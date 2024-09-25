@@ -1,30 +1,68 @@
 <ion-tabs>
-
   <ion-tab-bar slot="bottom">
-    <ion-tab-button tab="tab1" href="/tabs/tab1">
-      <ion-icon aria-hidden="true" name="newspaper" color="warning"></ion-icon>
+    <ion-tab-button
+      tab="tab1"
+      routerLink="/tabs/tab1"
+      (click)="setActivePage('/tabs/tab1')"
+    >
+      <ion-icon
+        aria-hidden="true"
+        [name]="(currUrl) === '/tabs/tab1' ? 'newspaper': 'newspaper-outline'"
+        [color]="(currUrl) === '/tabs/tab1' ? 'warning': 'dark'"
+      ></ion-icon>
       <ion-label color="dark">Recipes</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="tab2" href="/tabs/tab2">
-      <ion-icon aria-hidden="true" name="pizza-outline" color="medium"></ion-icon>
+    <ion-tab-button
+      tab="tab2"
+      routerLink="/tabs/tab2"
+      (click)="setActivePage('/tabs/tab2')"
+    >
+      <ion-icon
+        aria-hidden="true"
+        [name]="(currUrl) === '/tabs/tab2' ? 'pizza': 'pizza-outline'"
+        [color]="(currUrl) === '/tabs/tab2' ? 'warning': 'dark'"
+      ></ion-icon>
       <ion-label color="dark">Meals</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="tab3" href="/tabs/tab3">
-      <ion-icon aria-hidden="true" name="person-outline" color="medium"></ion-icon>
+    <ion-tab-button
+      tab="tab3"
+      href="/tabs/tab3"
+      (click)="setActivePage('/tabs/tab3')"
+    >
+      <ion-icon
+        aria-hidden="true"
+        [name]="(currUrl) === '/tabs/tab3' ? 'person': 'person-outline'"
+        [color]="(currUrl) === '/tabs/tab3' ? 'warning': 'dark'"
+      ></ion-icon>
       <ion-label color="dark">My Plates</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="favorites" href="/tabs/favorites">
-      <ion-icon aria-hidden="true" name="heart-outline" color="medium"></ion-icon>
-      <ion-label color="dark">Favorites</ion-label>
+    <ion-tab-button
+      tab="tab4"
+      href="/tabs/tab4"
+      (click)="setActivePage('/tabs/tab4')"
+    >
+      <ion-icon
+        aria-hidden="true"
+        [name]="(currUrl) === '/tabs/tab4' ? 'heart': 'heart-outline'"
+        [color]="(currUrl) === '/tabs/tab4' ? 'warning': 'dark'"
+      ></ion-icon>
+      <ion-label color="dark">My Plates</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="tab4" href="/tabs/tab4">
-      <ion-icon aria-hidden="true" name="settings-outline" color="medium"></ion-icon>
-      <ion-label color="dark">Settings</ion-label>
+    <ion-tab-button
+      tab="tab5"
+      href="/tabs/tab5"
+      (click)="setActivePage('/tabs/tab5')"
+    >
+      <ion-icon
+        aria-hidden="true"
+        [name]="(currUrl) === '/tabs/tab5' ? 'settings': 'settings-outline'"
+        [color]="(currUrl) === '/tabs/tab5' ? 'warning': 'dark'"
+      ></ion-icon>
+      <ion-label color="dark">My Plates</ion-label>
     </ion-tab-button>
   </ion-tab-bar>
-
 </ion-tabs>

@@ -1,13 +1,17 @@
 <ion-content>
-  <ion-grid [ngStyle]="{ margin: 'auto', width: '110vw' }">
-    <ion-row class="card-container">
+  <ion-grid>
+    <ion-row>
       <ion-col size="12">
-        <ion-row class="ion-no-padding">
-          <ion-col>Meals</ion-col>
-          <ion-col>Sides</ion-col>
-          <ion-col>Snacks</ion-col>
+        <ion-row class="ion-no-padding" [ngStyle]="{ 'text-align': 'center' }">
+          <ion-col class="menu-item-selected" size="4">Meals</ion-col>
+          <ion-col class="menu-item" size="4">Sides</ion-col>
+          <ion-col class="menu-item" size="4">Snacks</ion-col>
         </ion-row>
       </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid [ngStyle]="{ margin: 'auto', width: '110vw' }">
+    <ion-row class="card-container">
       <ion-col size="5" card *ngFor="let i of [1, 2, 3, 4, 5, 6]">
         <ion-col size="12">
           <ion-button color="clear" size="small" [ngStyle]="{ float: 'right' }">
