@@ -1,17 +1,21 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      My Plates
-    </ion-title>
+  <ion-toolbar color="warning">
+    <ion-title> My Plates </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">My Plates</ion-title>
+      <ion-title size="large">Search</ion-title>
+      <ion-searchbar></ion-searchbar>
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="My Plates page"></app-explore-container>
+  <!--  -->
+  <ng-container *ngFor="let i of recipes$ | async">
+    <ion-accordion-group>
+      <app-accordion [item]="i"> </app-accordion>
+    </ion-accordion-group>
+  </ng-container>
 </ion-content>

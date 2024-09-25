@@ -1,0 +1,26 @@
+<ion-accordion value="first">
+  <ion-item slot="header">
+    <ion-thumbnail class="thumb-container">
+      <img class="thumb" [src]="item.image" alt="" />
+    </ion-thumbnail>
+    <ion-label class="title">
+      {{ item.label }}
+      <p [ngStyle]="{ 'text-transform': 'capitalize' }">
+        <small>{{ item.source }}</small> |
+        <small>{{ item.cuisineType }}</small>
+        <!-- <small>{{ item.source }}</small> -->
+      </p>
+    </ion-label>
+  </ion-item>
+  <div class="ion-padding" slot="content">
+    <h6 [ngStyle]="{ margin: '0px' }">Ingredients:</h6>
+
+    <ion-list lines="full">
+      <ion-item *ngFor="let i of item.ingredients">
+        <ion-label [ngStyle]="{ 'font-size': '.775rem' }">
+          {{ i.text }}
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-accordion>

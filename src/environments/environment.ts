@@ -5,9 +5,16 @@
 export const environment = {
   production: false,
   apiBase: 'https://my.api.mockaroo.com/meal_planner.json?key=6c4d45e0',
-  apiBaseRecipes: 'https://my.api.mockaroo.com/meal_planner_recipes.json?key=6c4d45e0'
+  apiBaseRecipes:
+    'https://my.api.mockaroo.com/meal_planner_recipes.json?key=6c4d45e0',
+  apiMongoDB:
+    'mongodb+srv://tfosque:fosque14@familybookcluster.nraprzf.mongodb.net/family-book-db',
 };
 
+/* 
+mongodb+srv://<db_username>:<db_password>@familybookcluster.nraprzf.mongodb.net/
+
+*/
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.

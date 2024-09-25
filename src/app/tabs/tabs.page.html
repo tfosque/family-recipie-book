@@ -36,33 +36,33 @@
         [name]="(currUrl) === '/tabs/tab3' ? 'person': 'person-outline'"
         [color]="(currUrl) === '/tabs/tab3' ? 'warning': 'dark'"
       ></ion-icon>
-      <ion-label color="dark">My Plates</ion-label>
+      <ion-label color="dark">Search</ion-label>
     </ion-tab-button>
 
     <ion-tab-button
-      tab="tab4"
-      href="/tabs/tab4"
-      (click)="setActivePage('/tabs/tab4')"
+      tab="favorites"
+      routerLink="/favorites"
+      (click)="setActivePage('/favorites')"
     >
       <ion-icon
         aria-hidden="true"
-        [name]="(currUrl) === '/tabs/tab4' ? 'heart': 'heart-outline'"
-        [color]="(currUrl) === '/tabs/tab4' ? 'warning': 'dark'"
+        [name]="(currUrl) === '/favorites' ? 'heart': 'heart-outline'"
+        [color]="(currUrl) === '/favorites' ? 'warning': 'dark'"
       ></ion-icon>
-      <ion-label color="dark">My Plates</ion-label>
+      <ion-label color="dark">Favorites</ion-label>
     </ion-tab-button>
 
     <ion-tab-button
-      tab="tab5"
-      href="/tabs/tab5"
-      (click)="setActivePage('/tabs/tab5')"
+      tab="settings"
+      routerLink="/settings"
+      (click)="setActivePage('/settings')"
     >
       <ion-icon
         aria-hidden="true"
-        [name]="(currUrl) === '/tabs/tab5' ? 'settings': 'settings-outline'"
-        [color]="(currUrl) === '/tabs/tab5' ? 'warning': 'dark'"
+        [name]="(currUrl) === '/settings' ? 'settings': 'settings-outline'"
+        [color]="(currUrl) === '/settings' ? 'warning': 'dark'"
       ></ion-icon>
-      <ion-label color="dark">My Plates</ion-label>
+      <ion-label color="dark">Settings</ion-label>
     </ion-tab-button>
   </ion-tab-bar>
 </ion-tabs>

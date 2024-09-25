@@ -13,6 +13,7 @@ import { Platform } from '@ionic/angular';
 export class Tab1Page {
   letters: any[] = [];
   recipes$ = new BehaviorSubject<any>([]);
+  recipes_eda$ = new BehaviorSubject<any>([]);
   emptyRecipes = false;
   isLoading = true;
 
@@ -32,7 +33,6 @@ export class Tab1Page {
       console.log('App is running as a native app');
       this.recipeSvc.getLocalRecipesProxy(false);
     }
-
     //
     this.recipeSvc.recipes$.subscribe((r: any) => {
       // build letters of alphabet

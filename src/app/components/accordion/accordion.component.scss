@@ -1,0 +1,18 @@
+ion-accordion.accordion-expanding ion-item[slot="header"],
+ion-accordion.accordion-expanded ion-item[slot="header"] {
+    --color: orange;
+}
+
+/* ion-accordion.accordion-expanding,
+ion-accordion.accordion-expanded {
+    --background: orange;
+} */
+.thumb-container {
+    .thumb {
+        border-radius: 12px;
+    }
+}
+
+.title {
+    margin-left: 10px !important;
+}

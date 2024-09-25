@@ -11,6 +11,7 @@ export class PageService {
   constructor() {}
 
   setActivePage(activePageUrl: string) {
+    console.log({ activePageUrl });
     this.activePage.next(activePageUrl);
   }
 }
