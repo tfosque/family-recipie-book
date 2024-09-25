@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BehaviorSubject, shareReplay } from 'rxjs';
 
 @Component({
   selector: 'app-tab4',
@@ -6,10 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tab4.page.scss'],
 })
 export class Tab4Page implements OnInit {
-
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
+    console.log('tab/4');
   }
-
 }

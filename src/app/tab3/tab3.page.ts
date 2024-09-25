@@ -9,6 +9,7 @@ import { BehaviorSubject, shareReplay } from 'rxjs';
 })
 export class Tab3Page {
   recipes$ = new BehaviorSubject<any>([]);
+  searchStr = '';
 
   constructor(private recipeSvc: RecipeService) {}
 
@@ -19,5 +20,9 @@ export class Tab3Page {
       this.recipes$.next(eda);
       console.log({ eda });
     });
+  }
+
+  onSearchChange(event: any) {
+    console.log(this.searchStr);
   }
 }

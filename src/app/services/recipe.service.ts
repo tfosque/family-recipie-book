@@ -9,6 +9,9 @@ import { ReceipesData } from './recipesData';
   providedIn: 'root',
 })
 export class RecipeService {
+  private page = 1;
+  private perPage = 10;
+
   // api: string = environment.apiBase; // Local
   api: string = environment.apiBaseRecipes; // Mockaroo
   apiFood = 'http://localhost:3000/api/food'; // MongoDB hitting local server NextJS
@@ -26,6 +29,10 @@ export class RecipeService {
   public recipes_eda$ = this.recipes_eda.asObservable();
 
   constructor() {}
+
+  nextPage() {
+    this.page++;
+  }
 
   getLocalRecipes() {
     this.recipes.next(ReceipesData);
@@ -109,12 +116,12 @@ export class RecipeService {
     try {
       const response = await CapacitorHttp.get(options);
       const data = response.data;
-      console.log({ data });
+      // console.log({ data });
       const hits = data.hits;
       //
       console.group('data');
-      console.log('response.data::', data);
-      console.log('data.hits', hits);
+      /* console.log('response.data::', data);
+      console.log('data.hits', hits); */
       //
       const list = hits.map((m: any) => {
         m.recipe.links = m._links;
