@@ -12,13 +12,14 @@ export class FoodService {
   private perPage = 10;
 
   // api: string = environment.apiBase; // Local
+  api_Food_MongoDb_Edamam = 'http://localhost:3000/api/food_mongodb';
   api_Recipes_Edamam = 'http://localhost:3000/api/food_eda';
 
   private selectedFood = new BehaviorSubject<any>({});
   public selectedFood$ = this.selectedFood.asObservable();
   //
-  private food_eda = new BehaviorSubject<any>([]);
-  public food_eda$ = this.food_eda.asObservable();
+  private food = new BehaviorSubject<any>([]);
+  public food$ = this.food.asObservable();
 
   constructor() {}
 
@@ -27,7 +28,25 @@ export class FoodService {
     this.getFoodEdamamNext(url);
   }
 
-  // Edamam
+  // MongoDB
+  async getFoodMongoDB() {
+    const options = {
+      url: this.api_Food_MongoDb_Edamam,
+      headers: { 'X-Custom-Header': 'Value' },
+      // params: { id: '12345' }
+    };
+    try {
+      const response = await CapacitorHttp.get(options);
+      const sortedList = this.alphabetizeList(response.data, 'title');
+      console.log('MONGO:', { response, sortedList });
+      //
+      this.food.next(sortedList);
+    } catch (error) {
+      console.log({ error });
+    }
+  }
+
+  // Edamam Api
   async getFoodEdamam() {
     const options = {
       url: this.api_Recipes_Edamam,
@@ -42,7 +61,7 @@ export class FoodService {
       const hints = data.hints;
 
       //
-      console.group('Edamam Food');
+      console.group('Food Recipes');
       console.log('response.data::', data);
       console.log('data.hints', hints);
       //
@@ -58,7 +77,7 @@ export class FoodService {
       console.log('Food Edamam', { response, sortedList, list, uniq });
       console.groupEnd();
 
-      this.food_eda.next(sortedList);
+      this.food.next(sortedList);
     } catch (error) {
       console.log({ error });
     }
@@ -96,7 +115,7 @@ export class FoodService {
       console.log('Food Edamam::NEXT', { response, sortedList, list, uniq });
       console.groupEnd();
 
-      this.food_eda.next(sortedList);
+      this.food.next(sortedList);
     } catch (error) {
       console.log({ error });
     }

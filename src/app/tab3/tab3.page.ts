@@ -14,16 +14,15 @@ export class Tab3Page {
   constructor(private recipeSvc: RecipeService) {}
 
   ngOnInit(): void {
-    this.recipeSvc.getRecipesEdamam();
+    this.recipeSvc.getRecipesEdamamMongoDB();
     //
-    this.recipeSvc.recipes_eda$.pipe(shareReplay(1)).subscribe((eda: any) => {
+    this.recipeSvc.recipes$.pipe(shareReplay(1)).subscribe((eda: any) => {
       this.recipes$.next(eda);
       console.log({ eda });
     });
   }
 
   onSearchChange(event: any) {
-    this.recipeSvc.getRecipesEdamam(this.searchStr);
     console.log(this.searchStr);
   }
 }

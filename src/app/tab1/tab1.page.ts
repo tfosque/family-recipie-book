@@ -21,32 +21,27 @@ export class Tab1Page {
     private readonly recipeSvc: RecipeService,
     private readonly router: Router,
     private readonly activeRoute: ActivatedRoute,
-    private readonly platform: Platform,
   ) {}
 
   ngOnInit(): void {
-    // check platform
-    if (this.platform.is('mobileweb') || this.platform.is('desktop')) {
-      console.log('App is running in a browser');
-      this.recipeSvc.getLocalRecipesProxy(true);
-    } else {
-      console.log('App is running as a native app');
-      this.recipeSvc.getLocalRecipesProxy(false);
-    }
-    //
+    this.recipeSvc.getRecipesEdamamMongoDB();
+
     this.recipeSvc.recipes$.subscribe((r: any) => {
       // build letters of alphabet
       // check if recipes exist
       if (r?.length) {
         this.recipes$.next(r);
+        console.log({ r });
         //console.log({ r });
         // this.isLastRowItem();
+
+        // TODO isLoading Error Catching
         this.isLoading = false; // TODO move to service and catch error
 
         // build list
         const results = this.recipes$.value.map((rp: any) => {
           // list all first chars
-          return rp.title[0];
+          return rp.label[0];
         });
         // concat to uniq list with no duplicates
         const uniqueArray = _.uniq(results);
@@ -56,7 +51,8 @@ export class Tab1Page {
       // if empty alert user no recipes exist
       this.emptyRecipes = true;
     });
-    //
+
+    // in-page navigation with anchor #
     this.activeRoute.fragment.subscribe((fragment) => {
       if (fragment) {
         const element = document.querySelector('#' + fragment);

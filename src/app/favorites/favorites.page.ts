@@ -16,10 +16,10 @@ export class FavoritesPage implements OnInit {
   ngOnInit() {
     this.foodSvc.getFoodEdamam();
     //
-    this.foodSvc.food_eda$.pipe().subscribe((eda: any) => {
-      this.food$.next(eda);
-      this.nextUrl = eda[0].nextPage.next;
-      console.log({ eda });
+    this.foodSvc.food$.pipe().subscribe((food: any) => {
+      this.food$.next(food);
+      this.nextUrl = food[0].nextPage.next;
+      console.log({ food });
     });
   }
 

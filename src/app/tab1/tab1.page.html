@@ -27,7 +27,7 @@
     </ion-item-divider>
     <!--  -->
     <ng-container *ngFor="let item of (recipes$ | async); index as i">
-      <ion-item-group *ngIf="(item.title[0]).startsWith(letter); else skip">
+      <ion-item-group *ngIf="(item.label[0]).startsWith(letter); else skip">
         <app-recipe-item
           [recipe]="item"
           [letter]="letter"

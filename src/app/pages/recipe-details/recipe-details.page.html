@@ -12,13 +12,14 @@
     <img
       alt="title-image"
       width="360"
-      height="280"
-      [src]="(selectedRecipe | async)?.imgSet.large"
+      height="360"
+      [src]="imgSet.dummyImg"
       alt="Image description"
       alt="my-image"
     />
     <ion-card-header>
-      <div>{{desc | slice:0:100}}</div>
+      <!--   <div>{{desc | slice:0:100}}</div> -->
+      <div>DESC:</div>
       <ion-card-subtitle>{{average_price}}</ion-card-subtitle>
       <ion-card-title>{{title}}</ion-card-title>
     </ion-card-header>
@@ -28,9 +29,9 @@
 
   <ion-list [inset]="true">
     <ion-item
-      *ngFor="let rec of (selectedRecipe | async)?.ingredients[0].item.labels; let i = index"
+      *ngFor="let ing of (selectedRecipe | async)?.ingredients; let i = index"
     >
-      <ion-label>{{ labels[i] }}</ion-label>
+      <ion-label>{{ ing.food }}</ion-label>
     </ion-item>
   </ion-list>
 
@@ -58,7 +59,7 @@
             <ion-avatar slot="start">
               <ion-img
                 #img
-                [src]="imgSet.thumb"
+                [src]="imgSet.dummyImg"
                 (ionError)="handleImgError($event)"
               ></ion-img>
             </ion-avatar>

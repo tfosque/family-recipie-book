@@ -13,11 +13,12 @@ export class RecipeService {
   private perPage = 10;
 
   // api: string = environment.apiBase; // Local
-  api: string = environment.apiBaseRecipes; // Mockaroo
-  apiFood = 'http://localhost:3000/api/food'; // MongoDB hitting local server NextJS
+  // api: string = environment.apiBaseRecipes; // Mockaroo
+  api_Recipies_Mongo = 'http://localhost:3000/api/recipes_mongodb'; // MongoDB hitting local server NextJS
   api_Recipes_Edamam = 'http://localhost:3000/api/recipes_eda';
-  apiFoodProxy =
-    'https://my.api.mockaroo.com/meal_planner_recipes_labels.json?key=6c4d45e0';
+  //
+  /* apiFoodProxy =
+    'https://my.api.mockaroo.com/meal_planner_recipes_labels.json?key=6c4d45e0'; */
   //
   private recipes = new BehaviorSubject<any>([]);
   public recipes$ = this.recipes.asObservable();
@@ -25,8 +26,8 @@ export class RecipeService {
   private selectedRecipe = new BehaviorSubject<any>({});
   public selectedRecipe$ = this.selectedRecipe.asObservable();
   //
-  private recipes_eda = new BehaviorSubject<any>([]);
-  public recipes_eda$ = this.recipes_eda.asObservable();
+  /*  private recipes_eda = new BehaviorSubject<any>([]);
+  public recipes_eda$ = this.recipes_eda.asObservable(); */
 
   constructor() {}
 
@@ -34,34 +35,9 @@ export class RecipeService {
     this.page++;
   }
 
-  getLocalRecipes() {
-    this.recipes.next(ReceipesData);
-  }
-
-  async getLocalRecipesProxy(isBrowser: boolean) {
-    if (!isBrowser) {
-      this.getRecipesMongoDB();
-      return;
-    }
-    // run proxy or call mockaroo
+  /*  async getRecipesMongoDB() {
     const options = {
-      url: this.apiFoodProxy,
-      headers: { 'X-Custom-Header': 'Value' },
-    };
-    try {
-      const response = await CapacitorHttp.get(options);
-      const sortedList = this.alphabetizeList(response.data, 'title');
-      console.log('MONGO:', { response, sortedList });
-      //
-      this.recipes.next(sortedList);
-    } catch (error) {
-      console.log({ error });
-    }
-  }
-
-  async getRecipesMongoDB() {
-    const options = {
-      url: this.apiFood,
+      url: this.apiFoodMongo,
       headers: { 'X-Custom-Header': 'Value' },
       // params: { id: '12345' }
     };
@@ -74,23 +50,22 @@ export class RecipeService {
     } catch (error) {
       console.log({ error });
     }
-  }
+  } */
 
   // MongoDB
   async getRecipesEdamamMongoDB() {
     const options = {
-      url: this.api_Recipes_Edamam,
+      url: this.api_Recipies_Mongo,
       headers: { 'X-Custom-Header': 'Value' },
       // params: { id: '12345' }
     };
     try {
       const response = await CapacitorHttp.get(options);
       const data = response.data;
-      console.log({ data });
       const hits = data[0].hits;
       //
-      console.group('data');
-      console.log('response.data::', data);
+      console.group('recipies data:');
+      console.log('data:', data);
       console.log('data.hits', hits);
       //
       const list = hits.map((m: any) => {
@@ -101,7 +76,7 @@ export class RecipeService {
       console.log('MONGO:Edamam', { response, sortedList, list });
       console.groupEnd();
       //
-      this.recipes_eda.next(sortedList);
+      this.recipes.next(sortedList);
     } catch (error) {
       console.log({ error });
     }
@@ -112,6 +87,7 @@ export class RecipeService {
     //
     const urlWithFilter = `http://localhost:3000/api/recipes_eda?filter=${filter}`;
     console.log({ urlWithFilter });
+    //
     const options = {
       url: filter !== '' ? urlWithFilter : this.api_Recipes_Edamam,
       headers: { 'X-Custom-Header': 'Value' },
@@ -137,23 +113,6 @@ export class RecipeService {
       console.log('MONGO:Edamam', { response, sortedList, list });
       console.groupEnd();
 
-      this.recipes_eda.next(sortedList);
-    } catch (error) {
-      console.log({ error });
-    }
-  }
-
-  async getRecipes() {
-    const options = {
-      url: this.api,
-      headers: { 'X-Custom-Header': 'Value' },
-      // params: { id: '12345' }
-    };
-    try {
-      const response = await CapacitorHttp.get(options);
-      const sortedList = this.alphabetizeList(response.data, 'title');
-      console.log({ response, sortedList });
-      //
       this.recipes.next(sortedList);
     } catch (error) {
       console.log({ error });

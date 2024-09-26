@@ -2,44 +2,43 @@ import { Component, input, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { RecipeService } from 'src/app/services/recipe.service';
 
-@Component( {
+@Component({
   selector: 'app-recipe-item',
   templateUrl: './recipe-item.component.html',
   styleUrls: ['./recipe-item.component.scss'],
-} )
+})
 export class RecipeItemComponent implements OnInit {
-  @Input() recipe: any = {}
+  @Input() recipe: any = {};
   @Input() letter: string = '';
   @Input() index: number | null = null;
-  showRowLine = "inset";
+  showRowLine = 'inset';
   favIcon = false;
-  foodGroup = [];
+  foodGroup: any = [];
   imgUrl = '';
 
   constructor(
     private readonly recipeSvc: RecipeService,
-    private readonly router: Router
-  ) { }
+    private readonly router: Router,
+  ) {}
 
   ngOnInit() {
-    this.showRowLine = this.recipe.showLines ? "inset" : "none"; // inset, full, or none
-    const foodGroup = this.recipe.ingredients[0].item.foodGroup;
-    this.foodGroup = foodGroup;
-    this.imgUrl = this.recipe.imgSet.large;
+    this.showRowLine = this.recipe.showLines ? 'inset' : 'none'; // inset, full, or none
+    this.foodGroup = this.recipe.ingredients;
+    this.imgUrl = 'https://placehold.co/360x360'; // this.recipe.images['REGULAR'].url;
     this.favIcon = this.recipe.isRecipeFavorite;
     // console.log( { foodGroup } );
   }
 
   onClick() {
     // send selected recipe to recipeService
-    this.recipeSvc.setSelectedRecipe( this.recipe );
-    this.router.navigate( ['/recipe-details'] );
+    this.recipeSvc.setSelectedRecipe(this.recipe);
+    this.router.navigate(['/recipe-details']);
   }
 
-  onToggleFavIcon( event: any ) {
-    // heart - outline || heart    
+  onToggleFavIcon(event: any) {
+    // heart - outline || heart
     this.favIcon = !this.favIcon;
-    console.log( 'this.favIcon', this.favIcon, { event } );
+    console.log('this.favIcon', this.favIcon, { event });
     event.preventDefault();
   }
 }
