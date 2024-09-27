@@ -12,10 +12,13 @@
   </ion-header>
 
   <ion-list>
-    <ion-item *ngFor="let item of food$ | async">
+    <ion-item *ngFor="let item of food$ | async" (click)="openModal(item)">
       <ion-label>
-        <p>{{item.title}}</p>
+        <ion-text>{{item.title}}</ion-text>
       </ion-label>
+      <ion-button fill="clear">
+        <ion-icon name="time-outline" color="dark"></ion-icon>
+      </ion-button>
     </ion-item>
   </ion-list>
 </ion-content>

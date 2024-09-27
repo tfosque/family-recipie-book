@@ -1,0 +1,81 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Instructions</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismissModal()">Close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <ion-card>
+    <img alt="Silhouette of mountains" [src]="item.image" />
+    <ion-card-header>
+      <ion-card-title>{{ item.title }}</ion-card-title>
+      <ion-card-subtitle>Source: {{ item.sourceName }}</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-list-header class="ion-no-padding"
+              >Ingredients</ion-list-header
+            >
+          </ion-col>
+        </ion-row>
+
+        <ion-row *ngFor="let ingr of ingredients">
+          <ion-col size="12">
+            <ion-list class="ion-no-padding">
+              <ion-item
+                [ngStyle]="{ 'font-size': '.79rem' }"
+                class="ion-no-padding"
+              >
+                <app-ingredients
+                  [name]="ingr.name"
+                  [unit]="ingr.unit"
+                  [amount]="ingr.amount"
+                ></app-ingredients>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <!--  -->
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-list-header class="ion-no-padding"
+              >Instructions</ion-list-header
+            >
+          </ion-col>
+        </ion-row>
+
+        <ion-row
+          *ngFor="let inst of instructions; let i = index"
+          [ngStyle]="{ 'margin-bottom': '8px' }"
+        >
+          <ion-col size="12" [ngStyle]="{ 'font-weight': 'bold' }">
+            <ion-item-divider
+              class="ion-no-padding"
+              [ngStyle]="{ padding: '3px 0px 3px 2px' }"
+            >
+              &nbsp;
+              <ion-icon
+                [name]="
+                  inst.number !== instructions.length
+                    ? 'git-merge'
+                    : 'git-compare'
+                "
+              ></ion-icon
+              >&nbsp;Step: {{ inst.number }}</ion-item-divider
+            >
+          </ion-col>
+          <ion-col size="12">
+            {{ inst.step }}
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
