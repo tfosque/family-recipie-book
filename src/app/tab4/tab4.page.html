@@ -10,4 +10,12 @@
       <ion-title size="large">Settings</ion-title>
     </ion-toolbar>
   </ion-header>
+
+  <ion-list>
+    <ion-item *ngFor="let item of food$ | async">
+      <ion-label>
+        <p>{{item.title}}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>
